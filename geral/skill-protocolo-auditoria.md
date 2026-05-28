@@ -1,49 +1,48 @@
-# Skill Geral — Protocolo de Auditoria Empório PB
+# Skill Geral — Protocolo de Conferência de Caixa
+
+## O que é
+Protocolo de verificação por tipo de pagamento do caixa
+diário do Empório PB. O auditor confere cada categoria e
+sinaliza o que está OK ou pendente.
 
 ## Quando ativar
-Quando o usuário perguntar "posso fechar a auditoria?", "auditoria está ok?",
-"checklist", "protocolo" ou qualquer variação dessas perguntas.
+Quando o usuário perguntar sobre status da conferência, protocolo,
+checklist, ou pedir um resumo por categoria de pagamento.
 
-## Checklist obrigatório antes de fechar auditoria
+## Categorias a conferir (em ordem)
 
-Antes de declarar uma auditoria como concluída, verificar:
+1. CARTÕES (Valori + Stone)
+2. PIX PRESENCIAL (Stone QR + extratos bancários)
+3. PIX E-COMMERCE (Pagar.me)
+4. DEPÓSITOS (crédito no extrato = valor depositado)
+5. DINHEIRO GO (transferência tesouraria D+1)
+6. DINHEIRO SP (depósito conta D+1)
+7. BOLETOS E DUPLICATAS (parcelas no gateway)
+8. CHEQUE (verificar manualmente)
+9. VENDA FUNCIONÁRIO (título a receber no AT)
+10. BRINDE (voucher anexado no romaneio)
+11. CRÉDITOS (data pagamento = data faturamento)
+12. IA sinaliza: Em Aberto, Deb. Prestador, Acerto Sócio, Brinde
 
-[ ] 1. Cartões: todos NSUs localizados na Stone ou Valori
-[ ] 2. PIX: todos confirmados no Stone ou extrato bancário
-[ ] 3. Depósitos: todos com crédito confirmado no extrato
-[ ] 4. Dinheiro: transferência D+1 confirmada no extrato
-[ ] 5. Boletos/Dup.: todas parcelas registradas no gateway
-[ ] 6. Venda Funcionário: todos com título no AT
-[ ] 7. Brinde: todos com voucher anexado
-[ ] 8. Créditos: datas de pagamento = datas de faturamento
-[ ] 9. Pagamentos especiais: todos validados manualmente
-[ ] 10. DIF = 0 em todos os romaneios
+## Quando o usuário pedir status da conferência
+Responde categoria por categoria com os dados disponíveis:
 
-## Comportamento obrigatório
-Responder com o checklist acima preenchido com os dados disponíveis,
-marcando ✅ ou ❌ para cada item com base nos dados carregados.
-Se não houver dados suficientes para um item, marcar com ⚠ e indicar o que falta verificar.
-
-## Formato final
 ```
-AUDITORIA [PERÍODO] — STATUS FINAL
-
-✅/❌ 1. Cartões: [resumo]
-✅/❌ 2. PIX: [resumo]
-✅/❌ 3. Depósitos: [resumo]
-✅/❌ 4. Dinheiro: [resumo]
-✅/❌ 5. Boletos/Dup.: [resumo]
-✅/❌ 6. Venda Funcionário: [resumo]
-✅/❌ 7. Brinde: [resumo]
-✅/❌ 8. Créditos: [resumo]
-✅/❌ 9. Pagamentos especiais: [resumo]
-✅/❌ 10. DIF = 0: [resumo]
-
-RESULTADO: APROVADA / REPROVADA / PENDÊNCIAS
-[Lista de pendências se houver]
+✅ CARTÕES — [N] NSUs conferidos, [N] divergências
+✅ PIX PRESENCIAL — [N] confirmados, [N] pendentes
+✅ PIX E-COMMERCE — [N] confirmados, [N] pendentes
+⚠️ DEPÓSITOS — [N] pendentes — verificar extrato
+✅ DINHEIRO GO — transferência D+1 confirmada
+✅ DINHEIRO SP — depósito D+1 confirmado
+✅ BOLETOS/DUP. — [N] parcelas registradas
+⚠️ CHEQUE — verificar manualmente
+✅ VENDA FUNCIONÁRIO — [N] títulos confirmados no AT
+✅ BRINDE — [N] vouchers anexados
+✅ CRÉDITOS — datas conferidas
+⚠️ PAGAMENTOS ESPECIAIS — [lista de itens pendentes]
 ```
 
 ## Regras
-- Todos os 10 itens devem ser ✅ para APROVADA
-- Qualquer ❌ = REPROVADA, listar o que falta
-- Nunca declarar APROVADA com dados incompletos
+- Se não houver dados suficientes para uma categoria, marcar com ⚠️ e indicar o que falta
+- Nunca omitir categorias com pendência — sempre detalhar
+- Pagamentos especiais (Em Aberto, Deb. Prestador, Acerto Sócio, Brinde): sempre listar individualmente
