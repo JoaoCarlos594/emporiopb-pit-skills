@@ -44,3 +44,13 @@ Para cada romaneio lista:
 - EmAberto > 30 dias: aciona protocolo de cobrança
 - FreeInfluencer: verifica se há contrato/NF correspondente
 - CreditoCliente: verifica se é devolução ou adiantamento
+
+VENDA FUNCIONÁRIO:
+- Romaneio [X] — Funcionário [Y] — R$ [valor] — [N] parcelas
+- Status: COM TÍTULO / SEM TÍTULO
+- Ação: verificar parcelamento e confirmar título no AT
+
+BRINDE:
+- Romaneio [X] — R$ [valor]
+- Voucher: ANEXADO / PENDENTE
+- Ação se pendente: localizar voucher físico ANTES de fechar
